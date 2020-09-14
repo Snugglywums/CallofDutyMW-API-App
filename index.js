@@ -95,7 +95,6 @@ function getUserbyId(){
     .then(response => 
     displayResults(response));
 
- 
 };
 
   function displayResults(response) {
@@ -187,7 +186,6 @@ function getFriendUserbyId(){
     let gamerTagFriend = document.getElementById("mySearchFriend").value;
     let re = /#/gi;
     let newGamerTagFriend =gamerTagFriend.replace(re, "%2523");
-    console.log(newGamerTagFriend);
     let platformFriend = document.getElementById("platformfriend").value;
     
 

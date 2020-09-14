@@ -75,8 +75,10 @@ form {
   padding: 5px;
   text-align: center;
   font-family: 'Saira Condensed', sans-serif;
-  font-weight: 600;      
+  font-weight: 600;
+
 }
+
 
 /* Style the div for user info */
 .user{
@@ -145,6 +147,7 @@ form {
   border-radius: 5px;
   padding-top:5px;
   padding-bottom:5px;
+  width: 90%;
 }
 
 /* Style the search box for friend info */
@@ -152,6 +155,17 @@ form {
   border-radius: 5px;
   padding-top:5px;
   padding-bottom:5px;
+  width: 90%;
+}
+
+/* Style the input field for user platform */
+#platform{
+  width: 30%;
+}
+
+/* Style the input field for friend platform */
+#platformfriend{
+  width: 30%;
 }
 
 /* Style the restart button */
