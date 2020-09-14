@@ -2,26 +2,40 @@
 
 function homeScreenHTML(){
     return`  
-   
-    <section>
+<section>
     <div class="group">
        <div class="item">
             <form class="user">
                <h3 id="userName">Enter Your User Name</h3>
                <input type="search" id="mySearch" required>
+               <h3> Select Platform </h3>
+                    <select  id= "platform">
+                        <option value = "battle" selected>Battle Net</option>
+                        <option value = "steam">Steam</option>
+                        <option value = "xbl">Xbox</option>
+                        <option value = "psn">Playstation</option>
+                    </select>
              </form>
-      </div>
-         <div class="item">
-               <form class="friend">
-                 <h3 id="friendName">Enter Your Friend's User Name</h3>
-                   <input type="search" id="mySearchFriend" required>
-               </form>
-         </div>
+       </div>
+        <div class="item">
+            <form class="friend">
+                <h3 id="friendName">Enter Your Friend's User Name</h3>
+                <input type="search" id="mySearchFriend" required>
+                    <h3> Select Platform </h3>
+                        <select id = "platformfriend">
+                            <option value = "battle" selected>Battle Net</option>
+                            <option value = "steam">Steam</option>
+                            <option value = "xbl">Xbox</option>
+                            <option value = "psn">Playstation</option>
+                    </select>
+            </form>
+        </div>
     </div>
-<div class = "submitbutton">
-   <input type="submit" id="mySearchButton" value="submit" >
-</div>
-</section>`
+        <div class = "submitbutton">
+            <input type="submit" id="mySearchButton" value="submit" >
+        </div>
+</section>
+`
 }
 
 function resultsHTML(){
@@ -31,14 +45,14 @@ function resultsHTML(){
     <div class="group">
        <div class="item">
             <form class="user">
-                     <section id="results">
+              <section id="results">
                      <ul id="results-list">
                         <div class="tab">
                             <button class="userlinks" onclick="openTab(event, 'Player Stats')">Player Stats</button>
                             <button class="userlinks" onclick="openTab(event, 'Game Stats')">Game Stats</button>
                             <button class="userlinks" onclick="openTab(event, 'Weapon Stats')">Weapon Stats</button> 
                         </div>               
-                 </ul>
+                     </ul>
                </section>
              </form>
       </div>
@@ -46,21 +60,19 @@ function resultsHTML(){
                <form class="friend">
                    <section id="results-friend">
                      <ul id="results-list-friend">
-                     <div class="tab">
-                     <button class="tablinks2" onclick="openTabFriend(event, 'Player Stats2')" id="defaultOpen">Player Stats</button>
+                        <div class="tab">
+                            <button class="tablinks2" onclick="openTabFriend(event, 'Player Stats2')" id="defaultOpen">Player Stats</button>
                             <button class="tablinks2" onclick="openTabFriend(event, 'Game Stats2')">Game Stats</button>
                             <button class="tablinks2" onclick="openTabFriend(event, 'Weapon Stats2')">Weapon Stats</button>
                         </div>
-                 </ul>
-               </section>
+                    </ul>
+                   </section>
                </form>
          </div>
+      </div>
+    <div class = "submitbutton">
+        <button type="button" id="restart-btn"> Try Again </button>
     </div>
-</section>
-<div class = "submitbutton">
-<button type="button" id="restart-btn"> Try Again </button>
-</div>
-
 `
 }
 
@@ -70,9 +82,9 @@ function getUserbyId(){
     let gamerTag = document.getElementById("mySearch").value;
     let re = /#/gi;
     let newGamerTag =gamerTag.replace(re, "%2523");
-    console.log(newGamerTag);
+    let platform = document.getElementById("platform").value;
 
-    fetch("https://call-of-duty-modern-warfare.p.rapidapi.com/multiplayer/" + newGamerTag + '/battle', {
+    fetch("https://call-of-duty-modern-warfare.p.rapidapi.com/multiplayer/" + newGamerTag + '/' + platform, {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "call-of-duty-modern-warfare.p.rapidapi.com",
@@ -82,8 +94,11 @@ function getUserbyId(){
     .then(response => response.json())
     .then(response => 
     displayResults(response));
-
-  };
+    
+    window.addEventListener('error', function(e) {            
+        e.target.parentNode.innerHTML = "Oh no! Could not find that user!";
+           }, true);
+};
 
   function displayResults(response) {
     console.log(response);
@@ -147,7 +162,7 @@ function getUserbyId(){
         <p>Deaths: ${response.lifetime.all.properties.deaths}</p>
         <p>Headshots: ${response.lifetime.all.properties.headshots}</p>
         <p>Misses: ${response.lifetime.all.properties.misses}</p>
-        </div>
+    </div>
     <div id="Game Stats" class="userTab">
         <p>Games Played: ${response.lifetime.all.properties.gamesPlayed}</p>
         <p>Wins: ${response.lifetime.all.properties.wins}</p>
@@ -156,17 +171,17 @@ function getUserbyId(){
         <p>Most Kills in a Match: ${response.lifetime.all.properties.recordKillsInAMatch}</p>
         <p>Highest Kill Streak: ${response.lifetime.all.properties.recordKillStreak}</p>
         <p>Suicides: ${response.lifetime.all.properties.suicides}</p>
-        </div>
-        <div id="Weapon Stats" class="userTab">
+    </div>
+    <div id="Weapon Stats" class="userTab">
         <p> Assault Rifle Kills: ${sumAR}
         <p> SMG Kills: ${sumSMG}
         <p> LMG Kills: ${sumLMG}
         <p> Shotgun Kills: ${sumSG}
         <p> Sniper Rifle Kills: ${sumSN}
         <p> Pistol Kills: ${sumP}
-        </div>
+    </div>
         `  )
-    };
+ };
 
 
 function getFriendUserbyId(){
@@ -175,12 +190,14 @@ function getFriendUserbyId(){
     let re = /#/gi;
     let newGamerTagFriend =gamerTagFriend.replace(re, "%2523");
     console.log(newGamerTagFriend);
+    let platformFriend = document.getElementById("platformfriend").value;
+    
 
-    fetch("https://call-of-duty-modern-warfare.p.rapidapi.com/multiplayer/" + newGamerTagFriend + '/battle', {
+    fetch("https://call-of-duty-modern-warfare.p.rapidapi.com/multiplayer/" + newGamerTagFriend + '/' + platformFriend, {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "call-of-duty-modern-warfare.p.rapidapi.com",
-            "x-rapidapi-key": "4f73f6c31fmshcd3619c19341d56p122b48jsn0b9f0f427edc"
+            "x-rapidapi-key": "4f73f6c31fmshcd3619c19341d56p122b48jsn0b9f0f427edc",
         }
     })
     .then(response => response.json())
@@ -189,7 +206,7 @@ function getFriendUserbyId(){
 
 window.addEventListener('error', function(e) {            
  e.target.parentNode.innerHTML = "Oh no! Could not find that user!";
-}, true);
+    }, true);
 }
 
 
@@ -248,38 +265,34 @@ function displayResultsFriend(responseJson) {
 
    $('#results-list-friend').append(
         `<h3>${responseJson.username}</h3>
-        <div id="Player Stats2" class="friendTab">
-    
-      <p>Level: ${responseJson.level}<p>
-        <p>Accuracy: ${responseJson.lifetime.all.properties.accuracy}</p>
-      <p>K/D Ratio: ${responseJson.lifetime.all.properties.kdRatio}</p>
-       <p>Kills: ${responseJson.lifetime.all.properties.kills}</p>
-       <p>Deaths: ${responseJson.lifetime.all.properties.deaths}</p>
-       <p>Headshots: ${responseJson.lifetime.all.properties.headshots}</p>
-      <p>Misses: ${responseJson.lifetime.all.properties.misses}</p>
-
+<div id="Player Stats2" class="friendTab">
+    <p>Level: ${responseJson.level}<p>
+    <p>Accuracy: ${responseJson.lifetime.all.properties.accuracy}</p>
+    <p>K/D Ratio: ${responseJson.lifetime.all.properties.kdRatio}</p>
+    <p>Kills: ${responseJson.lifetime.all.properties.kills}</p>
+    <p>Deaths: ${responseJson.lifetime.all.properties.deaths}</p>
+    <p>Headshots: ${responseJson.lifetime.all.properties.headshots}</p>
+    <p>Misses: ${responseJson.lifetime.all.properties.misses}</p>
 </div>
 <div id="Game Stats2" class="friendTab">
  <p>Games Played: ${responseJson.lifetime.all.properties.gamesPlayed}</p>
-        <p>Wins: ${responseJson.lifetime.all.properties.wins}</p>
-        <p>Wins loss Ratio: ${responseJson.lifetime.all.properties.wlRatio}</p>
-        <p>Longest Win Streak: ${responseJson.lifetime.all.properties.recordLongestWinStreak}</p>
-        <p>Most Kills in a Match: ${responseJson.lifetime.all.properties.recordKillsInAMatch}</p>
-        <p>Highest Kill Streak: ${responseJson.lifetime.all.properties.recordKillStreak}</p>
-        <p>Suicides: ${responseJson.lifetime.all.properties.suicides}</p>
+    <p>Wins: ${responseJson.lifetime.all.properties.wins}</p>
+    <p>Wins loss Ratio: ${responseJson.lifetime.all.properties.wlRatio}</p>
+    <p>Longest Win Streak: ${responseJson.lifetime.all.properties.recordLongestWinStreak}</p>
+    <p>Most Kills in a Match: ${responseJson.lifetime.all.properties.recordKillsInAMatch}</p>
+    <p>Highest Kill Streak: ${responseJson.lifetime.all.properties.recordKillStreak}</p>
+    <p>Suicides: ${responseJson.lifetime.all.properties.suicides}</p>
 </div>
 <div id="Weapon Stats2" class="friendTab">
-<p> Assault Rifle Kills: ${sumAR}
-<p> SMG Kills: ${sumSMG}
-<p> LMG Kills: ${sumLMG}
-<p> Shotgun Kills: ${sumSG}
-<p> Sniper Rifle Kills: ${sumSN}
-<p> Pistol Kills: ${sumP}
+    <p> Assault Rifle Kills: ${sumAR}
+    <p> SMG Kills: ${sumSMG}
+    <p> LMG Kills: ${sumLMG}
+    <p> Shotgun Kills: ${sumSG}
+    <p> Sniper Rifle Kills: ${sumSN}
+    <p> Pistol Kills: ${sumP}
 </div>
         `   
-   )
-    
-    
+    )     
 };
 
 
@@ -291,7 +304,6 @@ function watchForm (){
         getFriendUserbyId();
         $('main').html(resultsHTML());
     });
-
 };
 
 
@@ -304,41 +316,40 @@ function openTab(event, tabName) {
     userTab = document.getElementsByClassName("userTab");
    for (i = 0; i < userTab.length; i++) {
         userTab[i].style.display = "none";
-    }
+    };
 
    userlinks = document.getElementsByClassName("userlinks");
    for (i = 0; i < userlinks.length; i++) {
         userlinks[i].className = userlinks[i].className.replace(" active", "");
-    }
+    };
 
     document.getElementById(tabName).style.display = "block";
     event.currentTarget.tabName += " active";
-   }
+};
 
 
-   function openTabFriend(event, tabName){
+function openTabFriend(event, tabName){
     event.preventDefault();
     var i, friendTab, tablinks2;
 
     friendTab = document.getElementsByClassName("friendTab");
     for (i = 0; i < friendTab.length; i++) {
         friendTab[i].style.display = "none";
-   }
+   };
 
    tablinks2 = document.getElementsByClassName("tablinks2");
    for (i = 0; i < tablinks2.length; i++) {
       tablinks2[i].className = tablinks2[i].className.replace(" active", "");
-    }
+    };
     document.getElementById(tabName).style.display = "block";
     event.currentTarget.tabName += " active";   
-   }
+};
 
-   function restartClick() {
+function restartClick() {
     $('body').on('click', '#restart-btn', function(){
-      location.reload();
-     
+      location.reload();   
    });
-  }
+}
 
     $(function() {
         console.log('App loaded! Waiting for submit!');
