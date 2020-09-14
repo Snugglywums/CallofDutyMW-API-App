@@ -79,6 +79,56 @@ function getUserbyId(){
 
   function displayResults(response) {
     console.log(response);
+
+    let sumAR =  response.lifetime.itemData.weapon_assault_rifle.iw8_ar_akilo47.properties.kills
+    + response.lifetime.itemData.weapon_assault_rifle.iw8_ar_anovember94.properties.kills
+    + response.lifetime.itemData.weapon_assault_rifle.iw8_ar_asierra12.properties.kills
+    + response.lifetime.itemData.weapon_assault_rifle.iw8_ar_falima.properties.kills
+    + response.lifetime.itemData.weapon_assault_rifle.iw8_ar_falpha.properties.kills
+    + response.lifetime.itemData.weapon_assault_rifle.iw8_ar_galima.properties.kills
+    + response.lifetime.itemData.weapon_assault_rifle.iw8_ar_kilo433.properties.kills
+    + response.lifetime.itemData.weapon_assault_rifle.iw8_ar_mcharlie.properties.kills
+    + response.lifetime.itemData.weapon_assault_rifle.iw8_ar_mike4.properties.kills
+    + response.lifetime.itemData.weapon_assault_rifle.iw8_ar_scharlie.properties.kills
+    + response.lifetime.itemData.weapon_assault_rifle.iw8_ar_sierra552.properties.kills
+    + response.lifetime.itemData.weapon_assault_rifle.iw8_ar_tango21.properties.kills;
+ 
+    let sumSMG = response.lifetime.itemData.weapon_smg.iw8_sm_augolf.properties.kills
+    + response.lifetime.itemData.weapon_smg.iw8_sm_beta.properties.kills
+    + response.lifetime.itemData.weapon_smg.iw8_sm_charlie9.properties.kills
+    + response.lifetime.itemData.weapon_smg.iw8_sm_mpapa5.properties.kills
+    + response.lifetime.itemData.weapon_smg.iw8_sm_mpapa7.properties.kills
+    + response.lifetime.itemData.weapon_smg.iw8_sm_papa90.properties.kills
+    + response.lifetime.itemData.weapon_smg.iw8_sm_smgolf45.properties.kills
+    + response.lifetime.itemData.weapon_smg.iw8_sm_uzulu.properties.kills
+    + response.lifetime.itemData.weapon_smg.iw8_sm_victor.properties.kills;
+ 
+    let sumLMG = response.lifetime.itemData.weapon_lmg.iw8_lm_kilo121.properties.kills
+    + response.lifetime.itemData.weapon_lmg.iw8_lm_lima86.properties.kills
+    + response.lifetime.itemData.weapon_lmg.iw8_lm_mgolf34.properties.kills
+    + response.lifetime.itemData.weapon_lmg.iw8_lm_mgolf36.properties.kills
+    + response.lifetime.itemData.weapon_lmg.iw8_lm_mkilo3.properties.kills
+    + response.lifetime.itemData.weapon_lmg.iw8_lm_pkilo.properties.kills
+    + response.lifetime.itemData.weapon_lmg.iw8_lm_sierrax.properties.kills;
+ 
+    let sumSG =  response.lifetime.itemData.weapon_shotgun.iw8_sh_charlie725.properties.kills
+    + response.lifetime.itemData.weapon_shotgun.iw8_sh_dpapa12.properties.kills
+    + response.lifetime.itemData.weapon_shotgun.iw8_sh_mike26.properties.kills
+    + response.lifetime.itemData.weapon_shotgun.iw8_sh_oscar12.properties.kills
+    + response.lifetime.itemData.weapon_shotgun.iw8_sh_romeo870.properties.kills;
+ 
+    let sumSN = response.lifetime.itemData.weapon_sniper.iw8_sn_alpha50.properties.kills
+    + response.lifetime.itemData.weapon_sniper.iw8_sn_delta.properties.kills
+    + response.lifetime.itemData.weapon_sniper.iw8_sn_hdromeo.properties.kills
+    + response.lifetime.itemData.weapon_sniper.iw8_sn_xmike109.properties.kills;
+ 
+    let sumP = response.lifetime.itemData.weapon_pistol.iw8_pi_cpapa.properties.kills
+    + response.lifetime.itemData.weapon_pistol.iw8_pi_decho.properties.kills
+    + response.lifetime.itemData.weapon_pistol.iw8_pi_golf21.properties.kills
+    + response.lifetime.itemData.weapon_pistol.iw8_pi_mike9.properties.kills
+    + response.lifetime.itemData.weapon_pistol.iw8_pi_mike1911.properties.kills
+    + response.lifetime.itemData.weapon_pistol.iw8_pi_papa320.properties.kills;
+
     $('#results-list').append(
         `<h3>${response.username}</h3>
     <div id="Player Stats" class="userTab">
@@ -91,11 +141,21 @@ function getUserbyId(){
         <p>Misses: ${response.lifetime.all.properties.misses}</p>
         </div>
     <div id="Game Stats" class="userTab">
-        <p> Game Stats</p>
-        </div>
+        <p>Games Played: ${response.lifetime.all.properties.gamesPlayed}</p>
+        <p>Wins: ${response.lifetime.all.properties.wins}</p>
+        <p>Wins loss Ratio: ${response.lifetime.all.properties.wlRatio}</p>
+        <p>Longest Win Streak: ${response.lifetime.all.properties.recordLongestWinStreak}</p>
+        <p>Most Kills in a Match: ${response.lifetime.all.properties.recordKillsInAMatch}</p>
+        <p>Highest Kill Streak: ${response.lifetime.all.properties.recordKillStreak}</p>
+        <p>Suicides: ${response.lifetime.all.properties.suicides}</p>
         </div>
         <div id="Weapon Stats" class="userTab">
-        <p> Weapon Stats</p>
+        <p> Assault Rifle Kills: ${sumAR}
+        <p> SMG Kills: ${sumSMG}
+        <p> LMG Kills: ${sumLMG}
+        <p> Shotgun Kills: ${sumSG}
+        <p> Sniper Rifle Kills: ${sumSN}
+        <p> Pistol Kills: ${sumP}
         </div>
         `  )
     };
@@ -128,6 +188,56 @@ window.addEventListener('error', function(e) {
 function displayResultsFriend(responseJson) {
     console.log(responseJson);
 
+   let sumAR =  responseJson.lifetime.itemData.weapon_assault_rifle.iw8_ar_akilo47.properties.kills
+   + responseJson.lifetime.itemData.weapon_assault_rifle.iw8_ar_anovember94.properties.kills
+   + responseJson.lifetime.itemData.weapon_assault_rifle.iw8_ar_asierra12.properties.kills
+   + responseJson.lifetime.itemData.weapon_assault_rifle.iw8_ar_falima.properties.kills
+   + responseJson.lifetime.itemData.weapon_assault_rifle.iw8_ar_falpha.properties.kills
+   + responseJson.lifetime.itemData.weapon_assault_rifle.iw8_ar_galima.properties.kills
+   + responseJson.lifetime.itemData.weapon_assault_rifle.iw8_ar_kilo433.properties.kills
+   + responseJson.lifetime.itemData.weapon_assault_rifle.iw8_ar_mcharlie.properties.kills
+   + responseJson.lifetime.itemData.weapon_assault_rifle.iw8_ar_mike4.properties.kills
+   + responseJson.lifetime.itemData.weapon_assault_rifle.iw8_ar_scharlie.properties.kills
+   + responseJson.lifetime.itemData.weapon_assault_rifle.iw8_ar_sierra552.properties.kills
+   + responseJson.lifetime.itemData.weapon_assault_rifle.iw8_ar_tango21.properties.kills;
+
+   let sumSMG = responseJson.lifetime.itemData.weapon_smg.iw8_sm_augolf.properties.kills
+   + responseJson.lifetime.itemData.weapon_smg.iw8_sm_beta.properties.kills
+   + responseJson.lifetime.itemData.weapon_smg.iw8_sm_charlie9.properties.kills
+   + responseJson.lifetime.itemData.weapon_smg.iw8_sm_mpapa5.properties.kills
+   + responseJson.lifetime.itemData.weapon_smg.iw8_sm_mpapa7.properties.kills
+   + responseJson.lifetime.itemData.weapon_smg.iw8_sm_papa90.properties.kills
+   + responseJson.lifetime.itemData.weapon_smg.iw8_sm_smgolf45.properties.kills
+   + responseJson.lifetime.itemData.weapon_smg.iw8_sm_uzulu.properties.kills
+   + responseJson.lifetime.itemData.weapon_smg.iw8_sm_victor.properties.kills;
+
+   let sumLMG = responseJson.lifetime.itemData.weapon_lmg.iw8_lm_kilo121.properties.kills
+   + responseJson.lifetime.itemData.weapon_lmg.iw8_lm_lima86.properties.kills
+   + responseJson.lifetime.itemData.weapon_lmg.iw8_lm_mgolf34.properties.kills
+   + responseJson.lifetime.itemData.weapon_lmg.iw8_lm_mgolf36.properties.kills
+   + responseJson.lifetime.itemData.weapon_lmg.iw8_lm_mkilo3.properties.kills
+   + responseJson.lifetime.itemData.weapon_lmg.iw8_lm_pkilo.properties.kills
+   + responseJson.lifetime.itemData.weapon_lmg.iw8_lm_sierrax.properties.kills;
+
+   let sumSG =  responseJson.lifetime.itemData.weapon_shotgun.iw8_sh_charlie725.properties.kills
+   + responseJson.lifetime.itemData.weapon_shotgun.iw8_sh_dpapa12.properties.kills
+   + responseJson.lifetime.itemData.weapon_shotgun.iw8_sh_mike26.properties.kills
+   + responseJson.lifetime.itemData.weapon_shotgun.iw8_sh_oscar12.properties.kills
+   + responseJson.lifetime.itemData.weapon_shotgun.iw8_sh_romeo870.properties.kills;
+
+   let sumSN = responseJson.lifetime.itemData.weapon_sniper.iw8_sn_alpha50.properties.kills
+   + responseJson.lifetime.itemData.weapon_sniper.iw8_sn_delta.properties.kills
+   + responseJson.lifetime.itemData.weapon_sniper.iw8_sn_hdromeo.properties.kills
+   + responseJson.lifetime.itemData.weapon_sniper.iw8_sn_xmike109.properties.kills;
+
+   let sumP = responseJson.lifetime.itemData.weapon_pistol.iw8_pi_cpapa.properties.kills
+   + responseJson.lifetime.itemData.weapon_pistol.iw8_pi_decho.properties.kills
+   + responseJson.lifetime.itemData.weapon_pistol.iw8_pi_golf21.properties.kills
+   + responseJson.lifetime.itemData.weapon_pistol.iw8_pi_mike9.properties.kills
+   + responseJson.lifetime.itemData.weapon_pistol.iw8_pi_mike1911.properties.kills
+   + responseJson.lifetime.itemData.weapon_pistol.iw8_pi_papa320.properties.kills;
+
+
    $('#results-list-friend').append(
         `<h3>${responseJson.username}</h3>
         <div id="Player Stats2" class="friendTab">
@@ -142,14 +252,26 @@ function displayResultsFriend(responseJson) {
 
 </div>
 <div id="Game Stats2" class="friendTab">
-<p> Game Stats</p>
-</div>
+ <p>Games Played: ${responseJson.lifetime.all.properties.gamesPlayed}</p>
+        <p>Wins: ${responseJson.lifetime.all.properties.wins}</p>
+        <p>Wins loss Ratio: ${responseJson.lifetime.all.properties.wlRatio}</p>
+        <p>Longest Win Streak: ${responseJson.lifetime.all.properties.recordLongestWinStreak}</p>
+        <p>Most Kills in a Match: ${responseJson.lifetime.all.properties.recordKillsInAMatch}</p>
+        <p>Highest Kill Streak: ${responseJson.lifetime.all.properties.recordKillStreak}</p>
+        <p>Suicides: ${responseJson.lifetime.all.properties.suicides}</p>
 </div>
 <div id="Weapon Stats2" class="friendTab">
-<p> Weapon Stats</p>
+<p> Assault Rifle Kills: ${sumAR}
+<p> SMG Kills: ${sumSMG}
+<p> LMG Kills: ${sumLMG}
+<p> Shotgun Kills: ${sumSG}
+<p> Sniper Rifle Kills: ${sumSN}
+<p> Pistol Kills: ${sumP}
 </div>
-        `
+        `   
    )
+    
+    
 };
 
 
