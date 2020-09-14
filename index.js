@@ -18,13 +18,16 @@ function homeScreenHTML(){
                </form>
          </div>
     </div>
+<div class = "submitbutton">
    <input type="submit" id="mySearchButton" value="submit" >
+</div>
 </section>`
 }
 
 function resultsHTML(){
     $('.heading').hide();
  return`   <section>
+ <h1>Results</h1>
     <div class="group">
        <div class="item">
             <form class="user">
@@ -293,24 +296,19 @@ function openTab(event, tabName) {
   event.preventDefault();
    var i, userTab, userlinks;
   
-
     userTab = document.getElementsByClassName("userTab");
    for (i = 0; i < userTab.length; i++) {
         userTab[i].style.display = "none";
     }
 
-  
-     //Get all elements with class="tablinks" and remove the class "active"
    userlinks = document.getElementsByClassName("userlinks");
    for (i = 0; i < userlinks.length; i++) {
         userlinks[i].className = userlinks[i].className.replace(" active", "");
     }
 
-  
     document.getElementById(tabName).style.display = "block";
     event.currentTarget.tabName += " active";
    }
-
 
 
    function openTabFriend(event, tabName){
