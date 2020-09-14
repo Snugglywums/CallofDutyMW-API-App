@@ -32,7 +32,7 @@ function homeScreenHTML(){
         </div>
     </div>
         <div class = "submitbutton">
-            <input type="submit" id="mySearchButton" value="submit" >
+            <input type="submit" id="mySearchButton" value="submit" onClick="return empty()">
         </div>
 </section>
 `
@@ -94,10 +94,8 @@ function getUserbyId(){
     .then(response => response.json())
     .then(response => 
     displayResults(response));
-    
-    window.addEventListener('error', function(e) {            
-        e.target.parentNode.innerHTML = "Oh no! Could not find that user!";
-           }, true);
+
+ 
 };
 
   function displayResults(response) {
@@ -200,13 +198,11 @@ function getFriendUserbyId(){
             "x-rapidapi-key": "4f73f6c31fmshcd3619c19341d56p122b48jsn0b9f0f427edc",
         }
     })
+
     .then(response => response.json())
     .then(responseJson => 
     displayResultsFriend(responseJson));
 
-window.addEventListener('error', function(e) {            
- e.target.parentNode.innerHTML = "Oh no! Could not find that user!";
-    }, true);
 }
 
 
@@ -295,19 +291,6 @@ function displayResultsFriend(responseJson) {
     )     
 };
 
-
-function watchForm (){
-    $('body').on('click', '#mySearchButton', function(event){
-        console.log("click");
-        event.preventDefault();
-        getUserbyId();
-        getFriendUserbyId();
-        $('main').html(resultsHTML());
-    });
-};
-
-
-
 function openTab(event, tabName) {
      
   event.preventDefault();
@@ -351,9 +334,28 @@ function restartClick() {
    });
 }
 
+function empty(){
+    var x;
+    var y;
+
+    x = document.getElementById("mySearch").value;
+    y = document.getElementById("mySearchFriend").value;
+
+    if (x ==="" && y ===""){
+        alert("Please Enter A User Name");
+        return false;
+    }
+
+    else{
+        getUserbyId();
+        getFriendUserbyId();
+        $('main').html(resultsHTML());     
+            }
+        };
+
+
     $(function() {
         console.log('App loaded! Waiting for submit!');
         $('main').html(homeScreenHTML());
-        watchForm();
         restartClick();
       });
