@@ -1,5 +1,6 @@
 'use strict';
 
+// function for homescreenHTML
 function homeScreenHTML(){
     return`  
 <section>
@@ -38,6 +39,7 @@ function homeScreenHTML(){
 `
 }
 
+//function for results screen HTML
 function resultsHTML(){
     $('.heading').hide();
  return`   <section>
@@ -76,7 +78,7 @@ function resultsHTML(){
 `
 }
 
-
+//function to get the user name
 function getUserbyId(){
     
     let gamerTag = document.getElementById("mySearch").value;
@@ -97,6 +99,7 @@ function getUserbyId(){
 
 };
 
+//function to display results for user
   function displayResults(response) {
     console.log(response);
 
@@ -180,7 +183,7 @@ function getUserbyId(){
         `  )
  };
 
-
+//function to get friend's user name
 function getFriendUserbyId(){
     
     let gamerTagFriend = document.getElementById("mySearchFriend").value;
@@ -203,7 +206,7 @@ function getFriendUserbyId(){
 
 }
 
-
+//function to display friend user results
 function displayResultsFriend(responseJson) {
     console.log(responseJson);
 
@@ -289,6 +292,7 @@ function displayResultsFriend(responseJson) {
     )     
 };
 
+//function to hide other tabs once clicked for user results
 function openTab(event, tabName) {
      
   event.preventDefault();
@@ -303,7 +307,7 @@ function openTab(event, tabName) {
    
 };
 
-
+//function to hide other tabs for friend results
 function openTabFriend(event, tabName){
     event.preventDefault();
     var i, friendTab;
@@ -317,12 +321,14 @@ function openTabFriend(event, tabName){
    
 };
 
+//function to handle restart click
 function restartClick() {
     $('body').on('click', '#restart-btn', function(){
       location.reload();   
    });
-}
+};
 
+//function to make sure user submits a user name in the fields
 function empty(){
     var x;
     var y;
