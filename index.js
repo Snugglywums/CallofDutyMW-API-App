@@ -148,7 +148,7 @@ function getUserbyId(){
     + response.lifetime.itemData.weapon_pistol.iw8_pi_mike9.properties.kills
     + response.lifetime.itemData.weapon_pistol.iw8_pi_mike1911.properties.kills
     + response.lifetime.itemData.weapon_pistol.iw8_pi_papa320.properties.kills;
-
+   
     $('#results-list').append(
         `<h3>${response.username}</h3>
     <div id="Player Stats" class="userTab">
@@ -292,38 +292,29 @@ function displayResultsFriend(responseJson) {
 function openTab(event, tabName) {
      
   event.preventDefault();
-   var i, userTab, userlinks;
+   var i, userTab;
   
     userTab = document.getElementsByClassName("userTab");
    for (i = 0; i < userTab.length; i++) {
         userTab[i].style.display = "none";
     };
 
-   userlinks = document.getElementsByClassName("userlinks");
-   for (i = 0; i < userlinks.length; i++) {
-        userlinks[i].className = userlinks[i].className.replace(" active", "");
-    };
-
     document.getElementById(tabName).style.display = "block";
-    event.currentTarget.tabName += " active";
+   
 };
 
 
 function openTabFriend(event, tabName){
     event.preventDefault();
-    var i, friendTab, tablinks2;
+    var i, friendTab;
 
     friendTab = document.getElementsByClassName("friendTab");
     for (i = 0; i < friendTab.length; i++) {
         friendTab[i].style.display = "none";
    };
 
-   tablinks2 = document.getElementsByClassName("tablinks2");
-   for (i = 0; i < tablinks2.length; i++) {
-      tablinks2[i].className = tablinks2[i].className.replace(" active", "");
-    };
-    document.getElementById(tabName).style.display = "block";
-    event.currentTarget.tabName += " active";   
+  document.getElementById(tabName).style.display = "block";
+   
 };
 
 function restartClick() {
