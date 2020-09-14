@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Press+Start+2P&family=Saira+Condensed:wght@100;600&family=Turret+Road&display=swap');
 
 @media screen and (max-width: 600px) {
+
+  #mySearch, #mySearchFriend, input[type=search]{
+    width: 100%
+  }
+  html { font-size: 3vw; }
   
   h1{
-    font-size: 50px;
+    font-size: 9vw !important;
   }
 
   h2{
-    font-size: 20px;
-  }
-  #mySearch, #mySearchFriend, input[type=search]{
-    width: 100%
+    font-size: 10vw !important;
   }
 }
 
@@ -97,6 +99,7 @@ form {
 
 .item {
   flex: 1;
+margin-top:-5%;
 
   
 }
@@ -136,6 +139,24 @@ form {
   border-radius: 5px;
   padding-top:5px;
   padding-bottom:5px;
+}
+
+#restart-btn{
+margin-top: 4%;
+  box-shadow: 0px 10px 25px -3px #000000;
+	background:linear-gradient(to bottom, #ffff4a 5%, #fa2600 100%);
+	background-color:#ffff4a;
+	border-radius:8px;
+	border:3px solid #020500;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+  font-family: 'Saira Condensed', sans-serif;
+  font-weight: bold;
+	font-size:18px;
+	padding:11px 45px;
+	text-decoration:none;
+  text-shadow:0px 1px 0px #000000;
 }
 
 /* Style the tab */

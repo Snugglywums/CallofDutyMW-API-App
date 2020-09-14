@@ -8,13 +8,13 @@ function homeScreenHTML(){
        <div class="item">
             <form class="user">
                <h3 id="userName">Enter Your User Name</h3>
-               <input type="search" id="mySearch">
+               <input type="search" id="mySearch" required>
              </form>
       </div>
          <div class="item">
                <form class="friend">
                  <h3 id="friendName">Enter Your Friend's User Name</h3>
-                   <input type="search" id="mySearchFriend">
+                   <input type="search" id="mySearchFriend" required>
                </form>
          </div>
     </div>
@@ -56,7 +56,12 @@ function resultsHTML(){
                </form>
          </div>
     </div>
-</section>`
+</section>
+<div class = "submitbutton">
+<button type="button" id="restart-btn"> Try Again </button>
+</div>
+
+`
 }
 
 
@@ -328,8 +333,16 @@ function openTab(event, tabName) {
     event.currentTarget.tabName += " active";   
    }
 
+   function restartClick() {
+    $('body').on('click', '#restart-btn', function(){
+      location.reload();
+     
+   });
+  }
+
     $(function() {
         console.log('App loaded! Waiting for submit!');
         $('main').html(homeScreenHTML());
         watchForm();
+        restartClick();
       });
