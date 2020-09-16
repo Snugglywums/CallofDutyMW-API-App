@@ -325,7 +325,6 @@ function openTab(event, tabName) {
     };
 
     document.getElementById(tabName).style.display = "block";
-   
 };
 
 //function to hide other tabs for friend results
@@ -351,13 +350,13 @@ function restartClick() {
 
 //function to make sure user submits a user name in the fields
 function empty(){
-    var x;
-    var y;
+    var userSearch;
+    var friendSearch;
 
-    x = document.getElementById("mySearch").value;
-    y = document.getElementById("mySearchFriend").value;
+    userSearch = document.getElementById("mySearch").value;
+    friendSearch = document.getElementById("mySearchFriend").value;
 
-    if (x ==="" && y ===""){
+    if (userSearch ==="" && friendSearch ===""){
         alert("Please Enter A User Name");
         return false;
     }
