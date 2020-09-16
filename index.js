@@ -1,5 +1,8 @@
 'use strict';
 
+const searchUrl = 'https://call-of-duty-modern-warfare.p.rapidapi.com/multiplayer/'
+
+
 // function for homescreenHTML
 function homeScreenHTML(){
     return`  
@@ -78,6 +81,16 @@ function resultsHTML(){
 `
 }
 
+function formatQueryParams(params) {
+ const queryItems = Object.keys(params)
+ .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+ console.log(queryItems)
+return queryItems.join('/');
+}
+
+
+
+
 //function to get the user name
 function getUserbyId(){
     
@@ -85,8 +98,16 @@ function getUserbyId(){
     let re = /#/gi;
     let newGamerTag =gamerTag.replace(re, "%2523");
     let platform = document.getElementById("platform").value;
+console.log(platform);
 
-    fetch("https://call-of-duty-modern-warfare.p.rapidapi.com/multiplayer/" + newGamerTag + '/' + platform, {
+    
+
+  
+
+  const url = searchUrl  + newGamerTag + '/' + platform;
+  console.log(url);
+
+    fetch(url, {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "call-of-duty-modern-warfare.p.rapidapi.com",
@@ -191,8 +212,8 @@ function getFriendUserbyId(){
     let newGamerTagFriend =gamerTagFriend.replace(re, "%2523");
     let platformFriend = document.getElementById("platformfriend").value;
     
-
-    fetch("https://call-of-duty-modern-warfare.p.rapidapi.com/multiplayer/" + newGamerTagFriend + '/' + platformFriend, {
+    const url = searchUrl  + newGamerTagFriend + '/' + platformFriend;
+    fetch(url, {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "call-of-duty-modern-warfare.p.rapidapi.com",
