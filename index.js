@@ -116,7 +116,8 @@ console.log(platform);
     })
     .then(response => response.json())
     .then(response => 
-    displayResults(response));
+    displayResults(response))
+    .catch(error => alert('User was not found or platform was incorrect, please try again.'));
 
 };
 
@@ -223,7 +224,8 @@ function getFriendUserbyId(){
 
     .then(response => response.json())
     .then(responseJson => 
-    displayResultsFriend(responseJson));
+    displayResultsFriend(responseJson))
+    .catch(error => alert('User was not found or platform was incorrect, please try again.'));
 
 }
 
