@@ -78,6 +78,10 @@ h2{
   text-shadow: 2px 2px 4px #000000;
 }
 
+.message-result{
+  font-size: 60px;
+}
+
 /*Style for h3 text in divs*/
 h3{
   font-size: 25px;
@@ -95,6 +99,23 @@ li{
   text-shadow: 2px 2px 4px #000000;
   list-style-type:none;
   line-height: 200%;  
+}
+
+ blockquote p {
+  font-family: 'Saira Condensed', sans-serif;
+  font-size: 30px;
+  text-align: center; 
+  padding: 15px;
+  background: #eee;
+  border-radius: 5px;
+  width: 50%;
+  margin-left: 25%;
+}
+blockquote p::before {
+  content: '\201C';
+}
+blockquote p::after {
+  content: '\201D';
 }
 
 /* Style the form */
@@ -200,8 +221,9 @@ form {
 /*display error message for json response div*/
 .displayErrorMessage{
   text-align: center;
-  color: red;
-  font-size: 20px;
+  color: white;
+  padding: 25px 0;
+  font-size: 70px;
   font-weight: bold;
   font-family: 'Saira Condensed', sans-serif;
 }
