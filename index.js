@@ -49,7 +49,7 @@ function resultsHTML(){
     $('main').html(`    
 <section>
  <h1>Results</h1>
- <h2>Click one of the stats below to compare</h2>
+ <h2 class="message-result">Click one of the stats below to compare</h2>
     <div class="group">
        <div class="item">
             <form class="user">
@@ -95,28 +95,31 @@ function hideSpinner() {
 }
 
 //function to get the user name
-function getUserbyId(){
-    
+function getUserbyId(){   
     let gamerTag = document.getElementById("mySearch").value;
     let re = /#/gi;
     let newGamerTag =gamerTag.replace(re, "%2523");
     let platform = document.getElementById("platform").value;
   
-  const url = searchUrl  + newGamerTag + '/' + platform;
-
-    fetch(url, {
-        "method": "GET",
-        "headers": {
+    const url = searchUrl  + newGamerTag + '/' + platform;
+    const dataHeader = {
+        "method": "Get",
+        "headers":{
             "x-rapidapi-host": "call-of-duty-modern-warfare.p.rapidapi.com",
-            "x-rapidapi-key": "07eac59be6msh033adcb81dfbd8ap1cd261jsn2c313c93b433"
+            "x-rapidapi-key": "4f73f6c31fmshcd3619c19341d56p122b48jsn0b9f0f427edc",
         }
+    }
+    fetch(url, dataHeader)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      } else {
+        return response.json()
+      }
     })
-    .then(response => response.json())
-    .then(response => 
-    displayResults(response))
+    .then(response => displayResults(response))
     .catch(error =>
-        $('.displayErrorMessage').html(`Something went wrong. Please, try again:${error.message}`))
-    
+      $('.displayErrorMessage').html(`Something went wrong. Please, try again:${error.message}`))
 };
 
 //function to display results for user
@@ -161,10 +164,8 @@ function getUserbyId(){
         `  )
  };
 
-
 //function to get friend's user name
 function getFriendUserbyId(){
-    
     let gamerTagFriend = document.getElementById("mySearchFriend").value;
     let re = /#/gi;
     let newGamerTagFriend =gamerTagFriend.replace(re, "%2523");
@@ -175,17 +176,20 @@ function getFriendUserbyId(){
         "method": "Get",
         "headers":{
             "x-rapidapi-host": "call-of-duty-modern-warfare.p.rapidapi.com",
-            "x-rapidapi-key": "4f73f6c31fmshcd3619c19341d56p122b48jsn0b9f0f427edc",
+            "x-rapidapi-key": "6cd039adccmshc73095fceaa54acp156610jsn6a05f6464b67",
              }
         }
-
-    fetch(url,dataHeader)
-    .then(response => response.json())
-    .then(responseJson => 
-    displayResultsFriend(responseJson))
-    .catch(error=>
+    fetch(url, dataHeader)
+    .then(response => {
+        if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+        return response.json()
+        }
+    })
+    .then(response => displayResultsFriend(response))
+    .catch(error =>
         $('.displayErrorMessage').html(`Something went wrong. Please, try again:${error.message}`))
-
 }
 
 //function to get to the certain properties in the response needed
@@ -319,4 +323,3 @@ function empty(){
         loadStart();
         restartClick();
       });
-
